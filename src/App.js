@@ -56,12 +56,17 @@ class App extends Component {
   };
 
   handleSubmit = searchValue => {
-    this.setState({
-      pictures: [],
-      searchQuery: searchValue,
-      currentPage: 1,
-      isLoading: true,
-    });
+    const { searchQuery } = this.state;
+
+    // проверка на ввод того же значения инпута
+    if (searchValue !== searchQuery) {
+      this.setState({
+        pictures: [],
+        searchQuery: searchValue,
+        currentPage: 1,
+        isLoading: true,
+      });
+    }
   };
 
   handleClickOnImg = link => {

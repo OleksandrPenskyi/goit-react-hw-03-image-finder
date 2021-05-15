@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const INITIAL_QUERY = {
-  value: '',
-};
+import style from './Searchbar.module.css';
 
 class Searchbar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
-    ...INITIAL_QUERY,
+    value: '',
   };
 
   handleSearchQuery = event => {
@@ -16,23 +19,25 @@ class Searchbar extends Component {
   handleSubmitForm = event => {
     event.preventDefault();
 
-    this.props.onSubmit(this.state.value);
+    const { onSubmit } = this.props;
+    const { value } = this.state;
+    onSubmit(value);
   };
 
   render() {
     const { value } = this.state;
 
     return (
-      <header className="Searchbar">
-        <form onSubmit={this.handleSubmitForm} className="SearchForm">
-          <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">Search</span>
+      <header className={style.Searchbar}>
+        <form onSubmit={this.handleSubmitForm} className={style.SearchForm}>
+          <button type="submit" className={style.SearchFormButton}>
+            <span className={style.SearchFormButtonLabel}>Search</span>
           </button>
 
           <input
             onChange={this.handleSearchQuery}
             value={value}
-            className="SearchForm-input"
+            className={style.SearchFormInput}
             type="text"
             autoComplete="off"
             autoFocus
