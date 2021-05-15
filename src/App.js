@@ -21,8 +21,8 @@ class App extends Component {
     const { searchQuery, currentPage } = this.state;
 
     if (prevState.searchQuery !== searchQuery) {
-      console.log('Стейт обновился');
-      console.log('Стейт:', searchQuery);
+      // console.log('Стейт обновился');
+      // console.log('Стейт:', searchQuery);
       this.fetchData(searchQuery, currentPage);
     }
   }
