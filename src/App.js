@@ -87,7 +87,12 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery pictures={pictures} onImgClick={this.handleClickOnImg} />
+        {pictures.length > 0 && (
+          <ImageGallery
+            pictures={pictures}
+            onImgClick={this.handleClickOnImg}
+          />
+        )}
 
         {isLoading && <Loader />}
         {isVisibleBtn && <Button onBtnClick={this.btnClick} />}
